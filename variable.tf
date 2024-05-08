@@ -50,7 +50,7 @@ variable "aws_instance_key" {
 variable "aws_win_ami" {
   description = "Windows(踏み台用)のami(踏み台用)"
   type        = string
-  default     = "ami-06323ff1c3178cee1"
+  default     = "ami-04b9ca3fad8da1de7"
 }
 
 variable "aws_win_instance_type" {
