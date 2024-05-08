@@ -1,6 +1,6 @@
 # Elastic IPの作成
 resource "aws_eip" "pse_eip" {
-  domain = true
+  domain = "vpc"
   tags = {
     Name = "${var.aws_vpc_name}-eip"
     Tag = var.aws_vpc_name
