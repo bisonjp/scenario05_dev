@@ -84,7 +84,7 @@ resource "aws_nat_gateway" "nat_gateway" {
 resource "aws_eip" "eip" {
   domain = "vpc"
   tags = {
-    Name = "${var.aws_vpc_name}-eip"
+    Name = "${var.aws_vpc_name}-natgw-eip"
     Tag = var.aws_vpc_name
   }
 }

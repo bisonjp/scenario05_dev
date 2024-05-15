@@ -2,7 +2,7 @@
 resource "aws_eip" "pse_eip" {
   domain = "vpc"
   tags = {
-    Name = "${var.aws_vpc_name}-eip"
+    Name = "${var.aws_vpc_name}-pse-eip"
     Tag = var.aws_vpc_name
   }
 }
