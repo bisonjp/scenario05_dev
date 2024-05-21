@@ -78,9 +78,9 @@ variable "aws_pse_ami" {
 }
 
 variable "aws_pse_instance_type" {
-  description = "App Connectorのinstance type"
+  description = "PSEのinstance type"
   type        = string
-  default     = "t3.medium"
+  default     = "m5.large"
 }
 
 variable "aws_ac_provision_key" {
