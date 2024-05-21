@@ -18,7 +18,7 @@ resource "aws_instance" "pse" {
   ami           = var.aws_pse_ami
   instance_type = var.aws_pse_instance_type
   subnet_id = aws_subnet.public_subnet.id
-  user_data = base64encode(local.pse_userdata)
+  user_data = base64encode(local.pseuserdata)
   key_name = var.aws_instance_key
   tags = {
     Name = "${var.aws_vpc_name}-pse"
