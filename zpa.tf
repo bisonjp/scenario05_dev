@@ -28,7 +28,7 @@ resource "zpa_server_group" "azure" {
   enabled           = true
   dynamic_discovery = true
   app_connector_groups {
-    id = [data.zpa_app_connector_group.dc_connector_group.id]
+    id = [data.zpa_app_connector_group.azure_connector_group.id]
   }
 }
 
@@ -71,11 +71,22 @@ resource "zpa_application_segment" "target" {
   domain_names     = ["${aws_instance.windows.private_dns}"]
   segment_group_id = zpa_segment_group.target_app_group.id
   server_groups {
-    id = [zpa_server_group.azure.id]
+    id = [zpa_server_group.aws.id]
   }
 }
 
-// Create Segment Group for source client
+// Create Server Group for source client
+resource "zpa_server_group" "aws" {
+  name              = "Servers Group for AWS created by terraform"
+  description       = "Servers Group for AWS created by terraform"
+  enabled           = true
+  dynamic_discovery = true
+  app_connector_groups {
+    id = [data.zpa_app_connector_group.aws_connector_group.id]
+  }
+}
+
+// Create Segment Group for target client
 resource "zpa_segment_group" "target_app_group" {
   name            = "Target App group created by terraform"
   description     = "Target App group created by terraform"
@@ -101,9 +112,14 @@ resource "zpa_policy_access_rule" "access_policy_for_taget_app" {
   }
 }
 
-// Retrieve App Connector Group
-data "zpa_app_connector_group" "dc_connector_group" {
+// Retrieve Azure App Connector Group
+data "zpa_app_connector_group" "azure_connector_group" {
   name = var.azure_ac_group
+}
+
+// Retrieve AWS App Connector Group
+data "zpa_app_connector_group" "aws_connector_group" {
+  name = var.aws_ac_group
 }
 
 data "zpa_policy_type" "access_policy" {

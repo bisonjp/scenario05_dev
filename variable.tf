@@ -303,6 +303,11 @@ variable "zpa_customer_id" {
 
 variable "azure_ac_group" {
   type        = string
-  description = "App Connector Groupの名前"
+  description = "Azure用App Connector Groupの名前"
+}
+
+variable "aws_ac_group" {
+  type        = string
+  description = "AWS用App Connector Groupの名前"
 }
 
