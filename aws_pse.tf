@@ -32,7 +32,7 @@ locals {
 systemctl stop zpa-service-edge 
 #Create a file from the Service Edge provisioning key created in the ZPA Admin Portal 
 #Make sure that the provisioning key is between double quotes 
-echo "${var.azure_pse_provision_key}" > /opt/zscaler/var/service-edge/provision_key
+echo "${var.aws_pse_provision_key}" > /opt/zscaler/var/service-edge/provision_key
 #Run a yum update to apply the latest patches 
 yum update -y 
 #Start the Service Edge service to enroll it in the ZPA cloud 

@@ -155,54 +155,6 @@ variable "azure_pri2_subnet_cidr" {
   default     = "10.0.2.0/24"
 }
 
-variable "azure_pse_provision_key" {
-  description = "AzureにデプロイするPSEのプロビジョニングキー"
-  type        = string
- }
-
-variable "azure_psevm_instance_type" {
-  description = "AzureにデプロイするPSEのインスタンスタイプ"
-  type        = string
-  default     = "Standard_D4s_v3"
-  validation {
-    condition = (
-      var.azure_psevm_instance_type == "Standard_D4s_v3" ||
-      var.azure_psevm_instance_type == "Standard_F4s_v2"
-    )
-    error_message = "Input psevm_instance_type must be set to an approved vm size."
-  }
-}
-
-variable "azure_psevm_image_publisher" {
-  description = "AzureにデプロイするPSEのイメージ発行元"
-  type        = string
-  default     = "atomizedinc1587939464368"
-}
-
-variable "azure_psevm_image_offer" {
-  type        = string
-  description = "Azure Marketplace CIS CentOS Image Offer"
-  default     = "atomized-r-centos8-v1"
-}
-
-variable "azure_psevm_image_sku" {
-  type        = string
-  description = "Azure Marketplace CIS CentOS Image SKU"
-  default     = "rcentos8plan"
-}
-
-variable "azure_psevm_image_version" {
-  type        = string
-  description = "Azure Marketplace CIS CentOS Image Version"
-  default     = "latest"
-}
-
-variable "azure_pse_username" {
-  type        = string
-  description = "Default Private Service Edge admin/root username"
-  default     = "zpse-admin"
-}
-
 variable "azure_tls_key_algorithm" {
   type        = string
   description = "algorithm for tls_private_key resource"
