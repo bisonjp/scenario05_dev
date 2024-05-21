@@ -72,9 +72,9 @@ variable "aws_ac_instance_type" {
 }
 
 variable "aws_pse_ami" {
-  description = "App Connectorのami"
+  description = "PSEのami"
   type        = string
-  default     = "ami-05b60713705a935c2"
+  default     = "ami-04e9e2c88c68b85df"
 }
 
 variable "aws_pse_instance_type" {
