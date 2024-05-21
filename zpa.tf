@@ -70,6 +70,7 @@ resource "zpa_application_segment" "target" {
   udp_port_ranges   = ["3389", "3389"]
   domain_names     = ["${aws_instance.windows.private_dns}"]
   segment_group_id = zpa_segment_group.target_app_group.id
+  use_in_dr_mode = true
   server_groups {
     id = [zpa_server_group.aws.id]
   }
