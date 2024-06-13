@@ -20,7 +20,7 @@ resource "aws_instance" "pse" {
   subnet_id = aws_subnet.public_subnet.id
   user_data = base64encode(local.pseuserdata)
   key_name = var.aws_instance_key
-  security_groups = aws_security_group.pse_sg.id
+  security_groups = [ aws_security_group.pse_sg.id ]
   tags = {
     Name = "${var.aws_vpc_name}-pse"
   }
