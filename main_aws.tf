@@ -107,20 +107,6 @@ resource "aws_route_table" "private_route_table" {
     Tag = var.aws_vpc_name
   }
 }
-/*
-# CC送信元用プライベートサブネットのルートテーブルの作成
-resource "aws_route_table" "private_route_table2" {
-  vpc_id = aws_vpc.vpc.id
-  route {
-    cidr_block = "0.0.0.0/0"
-    network_interface_id = module.cc_vm.service_eni_1[0]
-  }
-  tags = {
-    Name = "${var.aws_vpc_name}-private_route_table2"
-    Tag = var.aws_vpc_name
-  }
-}
-*/
 
 # プライベートサブネットにルートテーブルを紐づける
 resource "aws_route_table_association" "private_subnet_association" {
@@ -133,12 +119,6 @@ resource "aws_route_table_association" "private_subnet2_association" {
   subnet_id      = aws_subnet.private_subnet2.id
   route_table_id = aws_route_table.private_route_table.id
 }
-/*
-# プライベートサブネットにルートテーブルを紐づける
-resource "aws_route_table_association" "private_subnet_association2" {
-  subnet_id      = aws_subnet.private_subnet2.id
-  route_table_id = aws_route_table.private_route_table2.id
-}*/
 
 resource "aws_security_group" "sg" {
   vpc_id = aws_vpc.vpc.id

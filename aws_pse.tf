@@ -20,10 +20,40 @@ resource "aws_instance" "pse" {
   subnet_id = aws_subnet.public_subnet.id
   user_data = base64encode(local.pseuserdata)
   key_name = var.aws_instance_key
+  security_groups = aws_security_group.pse_sg.id
   tags = {
     Name = "${var.aws_vpc_name}-pse"
   }
 }
+
+resource "aws_security_group" "pse_sg" {
+  vpc_id = aws_vpc.vpc.id
+  name   = "pse-sg"
+
+  ingress {
+    description = "HTTP from PSE"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = [azurerm_public_ip.public_ip_natgw.ip_address]
+  }
+  ingress {
+    description = "HTTPS from PSE"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [azurerm_public_ip.public_ip_natgw.ip_address]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+}
+
 
 locals {
   pseuserdata = <<PSEUSERDATA
