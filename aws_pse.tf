@@ -35,14 +35,14 @@ resource "aws_security_group" "pse_sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = [azurerm_public_ip.public_ip_natgw.ip_address/32]
+    cidr_blocks = ["${azurerm_public_ip.public_ip_natgw.ip_address}/32"]
   }
   ingress {
     description = "HTTPS from PSE"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = [azurerm_public_ip.public_ip_natgw.ip_address/32]
+    cidr_blocks = ["${azurerm_public_ip.public_ip_natgw.ip_address}/32"]
   }
 
   egress {
